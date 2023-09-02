@@ -80,9 +80,6 @@ defaultLoadAllCards = (buttons) => {
   const id = buttons[0].category_id;
   loadAllCards(id);
 };
-// const id = buttons[0].category_id;
-//   loadAllCards(id);
-// music button
 
 loadAllCards = async (id) => {
   const res = await fetch(
@@ -94,21 +91,11 @@ loadAllCards = async (id) => {
   allCardDisplay(cards);
 };
 
-// const viewArr = [];
-// sortArray = (allCards) => {
-//   allCards.forEach((card) => {
-//     const views = card.others.views;
-//     console.log(views);
-//   });
-// };
-
 allCardDisplay = (cards) => {
   drawingContainer = document.getElementById("drawing-container");
   drawingContainer.innerHTML = "";
   const videoContainer = document.getElementById("video-container");
   videoContainer.innerHTML = "";
-
-  // const main = document.getElementById("main");
 
   // main.innerText = "";
 
@@ -117,6 +104,21 @@ allCardDisplay = (cards) => {
     const isVerified = card.authors[0].verified;
     const div = document.createElement("div");
     div.classList = `card card-compact shadow-xl`;
+    const date = card.others.posted_date;
+
+    const getMinutes = date / 60;
+
+    const newHours = getMinutes / 60;
+
+    const hour = Math.floor(newHours);
+
+    const newMinutes = getMinutes % 60;
+
+    const minute = Math.floor(newMinutes);
+
+    const posted_time = `${hour} hrs ${minute} min ago`;
+
+    // console.log(posted_time);
 
     div.innerHTML = `
     <figure>
@@ -124,6 +126,11 @@ allCardDisplay = (cards) => {
       class="w-[384px] h-[225px]"
         src="${card.thumbnail}"
         alt="video"/>
+        <div id="div" class="absolute font-semibold inline-flex right-4 bottom-32 px-1 py-[5px] rounded-sm bg-black" >
+        <h4 id='h4' class="text-white">${posted_time}</h4>
+        </div>
+
+        
     </figure>
     <div class="flex mt-6">
      <div class="mr-6">
@@ -133,6 +140,7 @@ allCardDisplay = (cards) => {
           src="${card.authors[0].profile_picture}"
           alt="author"
         />
+        
       </div>
       <did class="max-w-[360px] pb-4">
         <h2 class="font-bold">${card.title}</h2>
@@ -141,6 +149,7 @@ allCardDisplay = (cards) => {
           <img class='ml-3 ${
             isVerified ? "inline" : "hidden"
           }' src="img/verify.svg" />
+
         </div>
         <p>${card.others.views}</p>
       </div>
