@@ -4,7 +4,6 @@ allCatagoriesData = async () => {
   );
   const data = await res.json();
   const buttons = data.data;
-  console.log(buttons);
   allButtonData(buttons);
   musicButtonData(buttons);
   comedyButtonData(buttons);
@@ -25,7 +24,6 @@ allButtonData = (buttons) => {
     const id = buttons[0].category_id;
     loadAllCards(id);
   });
-  console.log(button);
 };
 
 // music button
@@ -38,7 +36,6 @@ musicButtonData = (buttons) => {
     const id = buttons[1].category_id;
     loadAllCards(id);
   });
-  console.log(button);
 };
 
 // comedy button
@@ -51,7 +48,6 @@ comedyButtonData = (buttons) => {
     const id = buttons[2].category_id;
     loadAllCards(id);
   });
-  console.log(button);
 };
 
 // drawing button
@@ -64,17 +60,62 @@ drawingButtonData = (buttons) => {
     const id = buttons[3].category_id;
     loadAllCards(id);
   });
-  console.log(button);
 };
 
 loadAllCards = async (id) => {
   const res = await fetch(
-    ` https://openapi.programming-hero.com/api/videos/category/${id}/`
+    ` https://openapi.programming-hero.com/api/videos/category/${id}`
   );
   const data = await res.json();
-  const card = data.data;
+  const cards = data.data;
+  console.log(cards);
 
-  console.log(id, card[1]);
+  // separateCard(card);
+
+  allCardDisplay(cards);
+};
+
+allCardDisplay = (cards) => {
+  const videoContainer = document.getElementById("video-container");
+  videoContainer.innerText = "";
+
+  cards.forEach((card) => {
+    console.log(card);
+
+    console.log(card.authors[0].verified);
+
+    const div = document.createElement("div");
+    div.classList = `card card-compact shadow-xl`;
+
+    div.innerHTML = `
+    <figure>
+      <img
+      class="w-[384px] h-[225px]"
+        src="${card.thumbnail}"
+        alt="video"/>
+    </figure>
+    <div class="flex mt-6">
+     <div class="mr-6">
+      <did class="ml-4" id="author-div">
+        <img 
+          class="w-12 h-12 rounded-full relative -top-5"
+          src="${card.authors[0].profile_picture}"
+          alt="author"
+        />
+      </div>
+      <did class="max-w-[360px]">
+        <h2 class="font-bold">${card.title}</h2>
+        <div class="flex justify-between">
+          <p>${card.authors[0].profile_name}</p><img src='img/varify.svg'/>
+        </div>
+        <p>${card.others.views}</p>
+      </div>
+     </div>
+    </div>
+    `;
+
+    videoContainer.appendChild(div);
+  });
 };
 
 allCatagoriesData();
