@@ -4,6 +4,7 @@ allCatagoriesData = async () => {
   );
   const data = await res.json();
   const buttons = data.data;
+  defaultLoadAllCards(buttons);
   allButtonData(buttons);
   musicButtonData(buttons);
   comedyButtonData(buttons);
@@ -15,7 +16,7 @@ const btnContainer = document.getElementById("button-container");
 // all button
 allButtonData = (buttons) => {
   const button = document.createElement("button");
-  button.classList = `bg-[red] text-white btn px-[20px] py-[5px] ml-6 hover:bg-red-600`;
+  button.classList = `btn px-[20px] py-[5px] ml-6`;
   button.textContent = `${buttons[0].category}`;
 
   button.setAttribute("id", "btn-all");
@@ -26,7 +27,6 @@ allButtonData = (buttons) => {
   });
 };
 
-// music button
 musicButtonData = (buttons) => {
   const button = document.createElement("button");
   button.classList = `btn px-[20px] py-[5px] ml-6`;
@@ -54,13 +54,35 @@ comedyButtonData = (buttons) => {
 drawingButtonData = (buttons) => {
   const button = document.createElement("button");
   button.classList = `btn px-[20px] py-[5px] ml-6`;
+  // button.setAttribute("id", "btn-drawing");
   button.textContent = `${buttons[3].category}`;
   btnContainer.appendChild(button);
   button.addEventListener("click", () => {
-    const id = buttons[3].category_id;
-    loadAllCards(id);
+    // window.location.href = "drawing.html";
+    const videoContainer = document.getElementById("video-container");
+    drawingContainer = document.getElementById("drawing-container");
+    videoContainer.innerHTML = "";
+    drawingContainer.innerHTML = `
+    <div class="flex justify-center items-center flex-col md:mt-40 md:ml-40">
+    <img class="w-36 h-36" src="../img/missing.svg" alt="missing" />
+    <h2
+      class="text-3xl text-center max-w-[433px] font-bold leading-[44px]"
+    >
+      Oops!! Sorry, There is no content here
+    </h2>
+  </div>
+    
+    `;
   });
 };
+
+defaultLoadAllCards = (buttons) => {
+  const id = buttons[0].category_id;
+  loadAllCards(id);
+};
+// const id = buttons[0].category_id;
+//   loadAllCards(id);
+// music button
 
 loadAllCards = async (id) => {
   const res = await fetch(
@@ -68,22 +90,31 @@ loadAllCards = async (id) => {
   );
   const data = await res.json();
   const cards = data.data;
-  console.log(cards);
-
-  // separateCard(card);
-
+  // console.log(cards);
   allCardDisplay(cards);
 };
 
+// const viewArr = [];
+// sortArray = (allCards) => {
+//   allCards.forEach((card) => {
+//     const views = card.others.views;
+//     console.log(views);
+//   });
+// };
+
 allCardDisplay = (cards) => {
+  drawingContainer = document.getElementById("drawing-container");
+  drawingContainer.innerHTML = "";
   const videoContainer = document.getElementById("video-container");
-  videoContainer.innerText = "";
+  videoContainer.innerHTML = "";
+
+  // const main = document.getElementById("main");
+
+  // main.innerText = "";
 
   cards.forEach((card) => {
-    console.log(card);
-
-    console.log(card.authors[0].verified);
-
+    // console.log(card);
+    const isVerified = card.authors[0].verified;
     const div = document.createElement("div");
     div.classList = `card card-compact shadow-xl`;
 
@@ -103,10 +134,13 @@ allCardDisplay = (cards) => {
           alt="author"
         />
       </div>
-      <did class="max-w-[360px]">
+      <did class="max-w-[360px] pb-4">
         <h2 class="font-bold">${card.title}</h2>
         <div class="flex justify-between">
-          <p>${card.authors[0].profile_name}</p><img src='img/varify.svg'/>
+          <p>${card.authors[0].profile_name}</p>
+          <img class='ml-3 ${
+            isVerified ? "inline" : "hidden"
+          }' src="img/verify.svg" />
         </div>
         <p>${card.others.views}</p>
       </div>

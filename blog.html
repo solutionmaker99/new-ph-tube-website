@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog Pages</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@3.6.4/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <header class="lg:mx-40">
+      <div
+        class="pb-8 mt-[50px] border-b border-gray-600 flex justify-between items-center"
+      >
+        <img src="../img/Logo.png" alt="logo" />
+
+        <input
+          type="submit"
+          value="Blog"
+          class="btn bg-red-500 text-white py-[10px] px-5"
+        />
+      </div>
+    </header>
+    <section>
+      <div class="md:mx-40">
+        <div class="collapse collapse-arrow bg-base-200 md:my-10">
+          <input type="radio" name="my-accordion-2" checked="checked" />
+          <div class="collapse-title text-xl font-medium">
+            Discuss the scope of var, let, and const
+          </div>
+          <div class="collapse-content">
+            <ul>
+              <li class="text-xl mt-2">
+                <span class="font-semibold">Global scope:</span> Variables
+                declared outside of any function have global scope. They can be
+                accessed from anywhere in the code.
+              </li>
+              <li class="text-xl mt-2">
+                <span class="font-semibold">Function scope:</span> Variables
+                declared within a function have function scope. They can only be
+                accessed from within the function itself.
+              </li>
+              <li class="text-xl mt-2">
+                <span class="font-semibold">Block scope:</span> Variables
+                declared within a block of code (such as an if statement or a
+                for loop) have block scope. They can only be accessed from
+                within the block.
+              </li>
+            </ul>
+            <!--  -->
+            <p class="text-green-700 text-xl font-bold mt-2">
+              The keywords var, let, and const are used to declare variables in
+              JavaScript. The scope of a variable declared with each keyword is
+              as follows:
+            </p>
+            <ul>
+              <li class="text-xl mt-2">
+                <span class="font-semibold">var:</span> Variables declared with
+                var have function scope. This is the default behavior in
+                JavaScript.
+              </li>
+              <li class="text-xl mt-2">
+                <span class="font-semibold">let:</span>Variables declared with
+                let have block scope.
+              </li>
+              <li class="text-xl mt-2">
+                <span class="font-semibold">const:</span>Variables declared with
+                const have block scope and cannot be reassigned.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="collapse collapse-arrow bg-base-200 md:my-10">
+          <input type="radio" name="my-accordion-2" />
+          <div class="collapse-title text-xl font-medium">
+            Tell us the use cases of null and undefined
+          </div>
+          <div class="collapse-content">
+            <h3 class="text-center text-4xl text-pink-500 mb-4">
+              Null And Undefined
+            </h3>
+            <div class="grid grid-cols-2 gap-2">
+              <ul>
+                <li class="text-xl mt-2">
+                  <span class="font-semibold">1.</span>
+                  You can store value of null. (like var x = null;)
+                </li>
+                <li class="text-xl mt-2">
+                  <span class="font-semibold">2.</span>
+                  If you have an object that does not have any properties, you
+                  can store the value null in the object.
+                </li>
+                <li class="text-xl mt-2">
+                  <span class="font-semibold">3.</span>
+                  The values null is a falsy value.
+                </li>
+              </ul>
+
+              <ul>
+                <li>
+                  <span>1.</span>
+                  If you console log any value of object using index number,
+                  which was deleted, It will be undefined. (like const arr =
+                  [2,5,6,7]; console.log(arr[9])).
+                </li>
+                <li>
+                  <span>2.</span>
+                  Nothing return function. It will undefined.
+                </li>
+                <li>
+                  <span>3.</span>
+                  Parameters that not pass will be undefined.
+                </li>
+                <li>
+                  <span>4.</span>
+                  Undefined is a falsy value.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="collapse collapse-arrow bg-base-200 md:my-10">
+          <input type="radio" name="my-accordion-2" />
+          <div class="collapse-title text-xl font-medium">
+            What do you mean by REST API?
+          </div>
+          <div class="collapse-content">
+            <h3 class="text-center text-4xl text-pink-500 mb-4">
+              About Rest Api
+            </h3>
+            <p>
+              A REST API stands for Representational State Transfer Application
+              Programming Interface. It is a software architectural style that
+              defines a set of constraints for how systems interact over the
+              internet. REST APIs are often used to expose data and
+              functionality from a back-end system to a front-end application. A
+              REST API is an API that conforms to the design principles of the
+              REST, or representational state transfer architectural style. For
+              this reason, REST APIs are sometimes referred to RESTful APIs.
+              First defined in 2000 by computer scientist Dr. Roy Fielding in
+              his doctoral dissertation, REST provides a relatively high level
+              of flexibility and freedom for developers. This flexibility is
+              just one reason why REST APIs have emerged as a common method for
+              connecting components and applications in a microservices
+              architecture.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
